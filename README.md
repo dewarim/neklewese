@@ -1,5 +1,7 @@
 # Noch ein kleiner Web-Server (Neklewese)
 
+Start mit der main-Methode der Klasse [com.dewarim.server.Webserver](/src/main/java/com/dewarim/server/WebServer.java)
+
 ## Technologie
 
 - Wird gebaut mit [Maven 3](https://maven.apache.org/)
@@ -17,6 +19,7 @@ Der Server ist (wenn er läuft) unter [http://localhost:7070/](http://localhost:
     GET / = index.html
     GET /static/index.html
     GET /static/main.css
+    GET /static/count.js (wird auf localhost nicht verwendet)
     POST /my/count - Counter erhöhen
     GET /my - nix zu sehen
     
