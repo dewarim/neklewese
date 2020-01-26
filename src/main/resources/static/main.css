@@ -1,0 +1,12 @@
+body {
+    /* die Weite der Webseite ist 80 Zeichen (_Ch_aracters) */
+    width: 80ch;
+
+    background-color: #f5f0c4;
+
+    /* Schriftfarbe: schwarz - wenn man den Hintergrund festlegt, ist es gut, auch die
+    Schriftfarbe festzulegen. Sonst hat der Anwender vielleicht weiße Schrift voreingestellt,
+    was vor weißem Hintergrund gewisse Kontrastprobleme mit sich bringt.
+     */
+    color: black;
+}

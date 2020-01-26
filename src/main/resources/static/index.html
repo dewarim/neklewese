@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Neklewese</title>
+
+    <!-- lade den Stylesheet: -->
+    <link rel="stylesheet" type="text/css" href="main.css"/>
+
+    <!-- eigentlich kann man JavaScript so einbauen: -->
+    <!-- aber "moderne" Browser verbieten das Laden von JavaScript aus Sicherheitsgründen für localhost... -->
+    <script type="text/javascript" src="count.js"></script>
+</head>
+<body>
+<h1>Ein Kleiner WebServer</h1>
+
+<button id="zahl">0?</button>
+
+<script type="text/javascript">
+    // weil count.js nicht von localhost geladen wird, baue ich den Code einfach hier ein:
+    /*
+    * Rufe den Server asynchron auf, d.h. das Ergebnis wird "irgendwann, sobald verfügbar" in die Seite aufgebaut,
+    * und der Browser wartet nicht, bis der Server antwortet..
+    */
+    function countZahl() {
+        console.log("Sende Anfrage an Server");
+        // Siehe: https://developer.mozilla.org/de/docs/Web/API/Fetch_API/Using_Fetch
+        fetch('/my/count', {method: 'POST'})
+            .then((response) => {
+                // egal, was kommt, mach Text draus (aktuell keine Fehlerprüfung):
+                return response.text();
+            })
+            .then((myZahl) => {
+                console.log(myZahl);
+                document.getElementById("zahl").innerText = myZahl;
+            });
+    }
+
+    // binde einen EventListener an ein HTML-ELement. Bei jedem click wird der Server aufgerufen.
+    // Wenn die Seite geladen wurde bis hier, können wir auf die Elemente oben zugreifen.
+    document.getElementById("zahl").addEventListener("click", countZahl, false)
+
+</script>
+</body>
+</html>
