@@ -20,7 +20,11 @@
     // weil count.js nicht von localhost geladen wird, baue ich den Code einfach hier ein:
     /*
     * Rufe den Server asynchron auf, d.h. das Ergebnis wird "irgendwann, sobald verfügbar" in die Seite aufgebaut,
-    * und der Browser wartet nicht, bis der Server antwortet..
+    * und der Browser wartet nicht, bis der Server antwortet.
+    *
+    * Eine Funktion kann auch mehrere Elemente aktualisieren. So braucht der Server nur das zu übertragen,
+    * was gerade an neuen Informationen gebraucht wird, z.B. für eine "function drawCard" nur das <img>-Tag,
+    * das auf eine neue Spielkarte verweist.
     */
     function countZahl() {
         console.log("Sende Anfrage an Server");
@@ -32,7 +36,20 @@
             })
             .then((myZahl) => {
                 console.log(myZahl);
+                /*
+                 * document ist ein Objekt, das der Browser bereitstellt - es repräsentiert die
+                 * aktuelle Webseite.
+                 * Mit .getElementById kann ein beliebiges HTML-Element ausgewählt werden, das
+                 * ein "id" Attribut hat (wie oben <button>). Die id muß eindeutig pro Seite sein,
+                 * d.h. zwei mal das gleiche Attribut wäre ein Fehler.
+                 */
                 document.getElementById("zahl").innerText = myZahl;
+                /*
+                 * Das Feld .innerText legt den Text eines Elements fest, wenn es einen hat.
+                 * .innerHTML() erlaubt es, weiteres HTML direkt dort einzufügen.
+                 * Beispiel: <div id="content"></div> könnte jedes mal neuen Text von einem Server erhalten,
+                 * wenn der Benutzer auf einen "mehr" button klickt.
+                 */
             });
     }
 
